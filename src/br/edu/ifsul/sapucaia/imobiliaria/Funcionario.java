@@ -1,4 +1,4 @@
-package br.edu.ifsul.sapucaia.LP;
+package br.edu.ifsul.sapucaia.imobiliaria;
 public class Funcionario {
 	private String telefone;
 	private double salario;

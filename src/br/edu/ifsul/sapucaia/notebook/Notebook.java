@@ -1,4 +1,4 @@
-package br.edu.ifsul.sapucaia.LP;
+package br.edu.ifsul.sapucaia.notebook;
 import javax.management.InvalidAttributeValueException;
 /*
  * 
