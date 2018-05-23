@@ -1,4 +1,4 @@
-package br.edu.ifsul.sapucaia.Arvore;
+package br.edu.ifsul.sapucaia.arvore;
 
 public class Arvore extends EstruturaArvore {
 
