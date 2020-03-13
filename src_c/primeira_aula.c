@@ -1,3 +1,6 @@
+/*
+Lê 3 numeros e fornece a soma e produto deles.
+*/
 #include <stdio.h>
 int main(void)
 {
