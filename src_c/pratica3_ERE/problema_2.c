@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <math.h>
 
-int main() {
+int main()
+{
     float valorCobranca, tempoPermanenciaMinutos, tempoPermanenciaHoras;
 
     printf("Entre o tempo de permanencia em minutos: ");
@@ -9,11 +10,16 @@ int main() {
 
     tempoPermanenciaHoras = tempoPermanenciaMinutos / 60;
 
-    if(tempoPermanenciaHoras == 1) {
+    if (tempoPermanenciaHoras == 1)
+    {
         valorCobranca = 15;
-    } else if (tempoPermanenciaHoras > 8) {
+    }
+    else if (tempoPermanenciaHoras > 8)
+    {
         valorCobranca = 32;
-    } else {
+    }
+    else
+    {
         valorCobranca = 15 + (2 * tempoPermanenciaHoras);
     }
 

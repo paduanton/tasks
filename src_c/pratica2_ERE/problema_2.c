@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <math.h>
 
-int main() {
+int main()
+{
     float raio, lado, perimetro, area;
 
     printf("Entre com o raio de um círculo: ");

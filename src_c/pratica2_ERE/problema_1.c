@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <math.h>
 
-int main() {
+int main()
+{
     float comprimento, largura, metrosQuadrados, potenciaLampadas;
 
     printf("Entre com o comprimento do quarto: ");
@@ -13,7 +14,7 @@ int main() {
     printf("Entre com a potência das lampadas: ");
     scanf("%f", &potenciaLampadas);
 
-    metrosQuadrados =  comprimento * largura;
+    metrosQuadrados = comprimento * largura;
 
     printf("Número de lampadas: %f", 16 * metrosQuadrados / potenciaLampadas);
 
