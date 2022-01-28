@@ -15,6 +15,7 @@ int main()
 	printf("\nDigite a quantidade de produtos: ");
 	scanf("%d", &quantidadeProduto);
 
+	// adicionado else no final, pois estamos deduzindo que sera digitado codigos entre 1 e 3 somente
 	if (codigoProduto == 1)
 	{
 		valorTotal = valorPaoFatiado * quantidadeProduto;
