@@ -28,7 +28,7 @@ int main()
 		valorTotal = valorBiscoito * quantidadeProduto;
 	}
 
-	printf("Total a pagar: %.2f", valorTotal);
+	printf("Total a pagar: R$%.2f", valorTotal);
 
 	return 0;
 }
