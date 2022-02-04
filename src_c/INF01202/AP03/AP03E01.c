@@ -2,34 +2,46 @@
 
 int main()
 {
-	float valorTotal, valorPaoFatiado = 1.50, valorLeite = 4.65, valorBiscoito = 6.93;
-	int codigoProduto, quantidadeProduto;
+	double a, b, c, aQuadrado, bQuadrado, cQuadrado;
 
-	printf("Codigo do Produto | Descricao do Produto | Valor unitario\n");
-	printf("1                 | Pão Fatiado          | R$ 1,50\n");
-	printf("2                 | Leite (1 litro)      | R$4,65\n");
-	printf("3                 | Biscoito (pacote 300 gramas) | R$6,93\n\n");
+	printf("Digite lado A do triangulo: ");
+	scanf("%lf", &a);
+	printf("Digite lado B do triangulo: ");
+	scanf("%lf", &b);
+	printf("Digite lado C do triangulo: ");
+	scanf("%lf", &c);
 
-	printf("Digite o codigo do produto: ");
-	scanf("%d", &codigoProduto);
-	printf("\nDigite a quantidade de produtos: ");
-	scanf("%d", &quantidadeProduto);
+	aQuadrado = a * a;
+	bQuadrado = b * b;
+	cQuadrado = c * c;
 
-	// adicionado else no final, pois estamos deduzindo que sera digitado codigos entre 1 e 3 somente
-	if (codigoProduto == 1)
+	if (a >= (b + c))
 	{
-		valorTotal = valorPaoFatiado * quantidadeProduto;
-	}
-	else if (codigoProduto == 2)
-	{
-		valorTotal = valorLeite * quantidadeProduto;
+		printf("NAO FORMA TRIANGULO");
 	}
 	else
 	{
-		valorTotal = valorBiscoito * quantidadeProduto;
+		if (a == b && b == c)
+		{
+			printf("TRIANGULO EQUILATERO\n");
+		} else if (a == b || b == c || a == c)
+		{
+			printf("TRIANGULO ISOSCELES\n");
+		}
+
+		if (aQuadrado == (bQuadrado + cQuadrado))
+		{
+			printf("TRIANGULO RETANGULO");
+		}
+		else if (aQuadrado > (bQuadrado + cQuadrado))
+		{
+			printf("TRIANGULO OBTUSANGULO");
+		}
+		// aqui nao eh necessario if, pois se aQuadrado nao eh igual e nem maior que bQuadrado + cQuadrado, entao aqui ele eh menor
+		else
+		{
+			printf("TRIANGULO ACUTANGULO");
+		}
 	}
-
-	printf("Total a pagar: R$%.2f", valorTotal);
-
 	return 0;
 }
