@@ -26,9 +26,9 @@ int main()
 		{
 			saldoFinal = saldoInicial;
 			printf("Saldo insuficiente para realizar a operacao");
-
-			break;
 		}
+		break;
+
 	case 3:
 		printf("Digite o numero da conta: ");
 		scanf("%d", &numeroConta);
