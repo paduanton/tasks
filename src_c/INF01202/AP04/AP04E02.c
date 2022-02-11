@@ -30,13 +30,13 @@ int main()
 			salarioMaximo = salario;
 		}
 
-		if (sexo == "M")
+		if (sexo == 'F')
 		{
-			quantidadeHomens++;
+			quantidadeMulheres++;
 		}
 		else
 		{
-			quantidadeMulheres++;
+			quantidadeHomens++;
 		}
 	}
 
