@@ -1,52 +1,90 @@
 #include <stdio.h>
+#include <math.h>
+
+#define CODIGO_SOMA 1
+#define CODIGO_SUBTRACAO 2
+#define CODIGO_MULTIPLICACAO 3
+#define CODIGO_DIVISAO 4
+#define CODIGO_RESTO_DIVISAO 5
+#define CODIGO_SAIR 0
 
 int main()
 {
-	// quebrando as variaveis double em duas linhas para facilitar a leitura
-	double valorDoacaoAtual, metaValorTotalDoacoes, valorTotalDoacoes = 0;
-	/* 
-	   inicializando menorValorDoacao com o maior numero possivel para double
-	   para ser feita a comparacao da linha 37
-	*/
-	double menorValorDoacao = 1.7976931348623158E+308, maiorValorDoacao = 0, mediaDoacoes;
-	int quantidadeDoacoes = 0;
+	int codigoAcao;
+	float primeiroOperando, segundoOperando, resultado;
 
-	printf("Digite a meta do valor total das doacoes: ");
-	scanf("%lf", &metaValorTotalDoacoes);
-
-	while (valorTotalDoacoes < metaValorTotalDoacoes)
+	do
 	{
+		printf("\nDigite o numero de uma opcao abaixo:");
+		printf("\n1) Soma");
+		printf("\n2) Subtracao");
+		printf("\n3) Multiplicacao");
+		printf("\n4) Divisao");
+		printf("\n5) Resto da divisao");
+		printf("\n0) Sair do programa\n\n");
 
-		printf("Digite o valor a ser doado: ");
-		scanf("%lf", &valorDoacaoAtual);
+		scanf("%d", &codigoAcao);
 
-		if (valorDoacaoAtual <= 0)
+		/* Validando se é um codigo valido para pedir os operandos ao usuario.
+		   Conforme o exemplo do enunciado, nao deve pedir operando caso operacao
+		   seja invalida ou codigo 0
+		*/
+		if (codigoAcao >= CODIGO_SOMA && codigoAcao <= CODIGO_RESTO_DIVISAO)
 		{
-			printf("Doação invalida de R$%.2lf", valorDoacaoAtual);
+			printf("\nDigite o primeiro operando: ");
+			scanf("%f", &primeiroOperando);
+			printf("Digite o segundo operando: ");
+			scanf("%f", &segundoOperando);
 		}
-		else
+		switch (codigoAcao)
 		{
-			quantidadeDoacoes++;
-			valorTotalDoacoes += valorDoacaoAtual;
-
-			if (valorDoacaoAtual > maiorValorDoacao)
+		case CODIGO_SOMA:
+			resultado = primeiroOperando + segundoOperando;
+			break;
+		case CODIGO_SUBTRACAO:
+			resultado = primeiroOperando - segundoOperando;
+			break;
+		case CODIGO_MULTIPLICACAO:
+			resultado = primeiroOperando * segundoOperando;
+			break;
+		case CODIGO_DIVISAO:
+			if (segundoOperando == 0)
 			{
-				maiorValorDoacao = valorDoacaoAtual;
+				printf("\nNao e possivel divisao por zero\n");
 			}
-
-			if (valorDoacaoAtual < menorValorDoacao)
+			else
 			{
-				menorValorDoacao = valorDoacaoAtual;
+				resultado = primeiroOperando / segundoOperando;
+			}
+			break;
+		case CODIGO_RESTO_DIVISAO:
+			resultado = fmodf(primeiroOperando, segundoOperando);
+			break;
+		case CODIGO_SAIR:
+			printf("\nEncerrando o programa\n");
+			break;
+
+		default:
+			printf("\nOpcao invalida\n\n");
+			break;
+		}
+		/* Validando se é um codigo valido para mostrar o printf com o resultado.
+		   Assim evitando redudancias de botar um printf em cada case acima.
+		   Conforme o exemplo do enunciado, nao deve mostrar resultado caso operacao
+		   seja invalida ou codigo 0
+		*/
+		if (codigoAcao >= CODIGO_SOMA && codigoAcao <= CODIGO_RESTO_DIVISAO)
+		{
+			/* Conforme enunciado, caso operacao seja divisao e segundo operando
+			   seja 0, não deve mostrar o resultado
+			*/
+			if (!(codigoAcao == CODIGO_DIVISAO && segundoOperando == 0))
+			{
+				printf("\nResultado: %.1f\n\n", resultado);
 			}
 		}
-	}
 
-	mediaDoacoes = valorTotalDoacoes / quantidadeDoacoes;
-
-	printf("\nArrecadacao total R$%.2lf", valorTotalDoacoes);
-	printf("\nMenor doacao: R$%.2lf", menorValorDoacao);
-	printf("\nMaior doacao: R$%.2lf", maiorValorDoacao);
-	printf("\nMedia das doacoes: R$%.2lf", mediaDoacoes);
+	} while (codigoAcao != CODIGO_SAIR);
 
 	return 0;
 }
