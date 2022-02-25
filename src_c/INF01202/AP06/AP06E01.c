@@ -22,7 +22,7 @@ int main()
 
 	mediaNumeros = somaNumeros / quantidadeNumeros;
 
-	printf("\nMaiores que a media ");
+	printf("\nMaiores que a media: ");
 	for (i = 0; i < quantidadeNumeros; i++)
 	{
 
@@ -32,11 +32,11 @@ int main()
 		}
 	}
 
-	printf("\nMenores ou iguais a media ");
+	printf("\nMenores ou iguais a media: ");
 	for (i = 0; i < quantidadeNumeros; i++)
 	{
 
-		if (numeros[i] < mediaNumeros)
+		if (numeros[i] <= mediaNumeros)
 		{
 			printf("%.2lf ", numeros[i]);
 		}
