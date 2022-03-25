@@ -23,23 +23,10 @@
 (define CARTA-COPAS (make-carta "copas" 2))
 (define CARTA-OUROS (make-carta "ouros" 6))
 
-;; TIPO MÃO
-;; Uma Mão é
-;; 1. lista vazia: empty, ou
-;; 2. (cons carta n-cartas), onde
-;;        carta: Carta, representa uma carta
-;;        n-cartas: lista de cartas
-
 (define MÃO-1 (cons CARTA-NULA (cons CARTA-PAUS (cons CARTA-COPAS empty))))
 (define MÃO-2 (cons CARTA-PAUS (cons CARTA-ESPADAS (cons CARTA-COPAS empty))))
 (define MÃO-3 (cons CARTA-COPAS (cons CARTA-OUROS (cons CARTA-PAUS empty))))
 
-;; TIPO MESA
-;; Uma Mesa é
-;; 1. lista vazia: empty, ou
-;; 2. (cons carta n-cartas), onde
-;;        carta: Carta, representa uma carta
-;;        n-cartas: lista de cartas
 
 (define MESA-1 (cons CARTA-OUROS (cons CARTA-PAUS (cons CARTA-COPAS empty))))
 (define MESA-2 (cons CARTA-PAUS (cons CARTA-ESPADAS (cons CARTA-COPAS empty))))
@@ -131,14 +118,14 @@
      (= (+ (carta-valor carta) (soma-mesa mesa)) 15)]))
 
 
-(check-expect  (escova? CARTA-OUROS MESA-1) false)
+(escova? CARTA-OUROS MESA-1)
 (check-expect  (escova? CARTA-OUROS MESA-2) true)
 ;; =============================================================
 ;; QUESTÃO 4
 ;; =============================================================
 ;; jogada-escova: Mão Mesa -> String
-;; Objetivo: Dado uma mão e uma mesa se houver possibilidade de escova, devolve a
-;;           mensagem (string) "Escova!" caso contrário devolve a mensagem "Não faço escova."
+;; Objetivo: se houver possibilidade de escova, devolve a mensagem (string) "Escova!"
+;;           caso contrário devolve a mensagem "Não faço escova."
 ;; Exemplos:
 ;;   (jogada-escova (cons (make-carta ...)) (cons (make-carta ...))) = "Escova!"
 ;;   (jogada-escova (cons (make-carta ...)) (cons (make-carta ...))) = "Não faço escova."
@@ -157,10 +144,8 @@
             ;; caso contrario executa a funcao no resto da mão
             [else (jogada-escova (rest mão) mesa) ])]))
 
-;; Testes
+;; (jogada-escova MÃO-3 MESA-1)
 
-(check-expect  (jogada-escova MÃO-3 MESA-1) "Não faço escova.")
-(check-expect   (jogada-escova MÃO-3 MESA-2) "Escova!")
 
 ;; ==============================================================
 ;; QUESTÃO 5
@@ -187,10 +172,6 @@
     ;; caso contrario roda a funcao de novo no resto da mao
     [else (verifica-escova (rest mão) mesa)]))
 
-;; TESTES
-
-(check-expect  (verifica-escova MÃO-3 MESA-2) (make-carta "ouros" 6))
-(check-expect   (verifica-escova (list (make-carta "copas" 2) (make-carta "paus" 6) (make-carta "ouros" 6)) MESA-2) (make-carta "paus" 6))
 
 ;; verifica-carta-nula Mão Mesa -> Carta
 ;; Objetivo: Dado uma mão retorna a primeira carta que não for nula
@@ -200,15 +181,10 @@
 
 (define (verifica-carta-nula mão)
   (cond
-    ;; verifica se a primeira carta da mão não é nula, então retorna a carta
+    ;; verifica se a primeira carta da mão é nula, então retorna a carta
     [(> (carta-valor (first mão)) 0) (first mão)]
     ;; caso contrario roda a funcao novamente no resto da mao
       [else (verifica-carta-nula (rest mão))]))
-
-;; TESTES
-
-(check-expect  (verifica-carta-nula MÃO-3) (make-carta "copas" 2))
-(check-expect  (verifica-carta-nula MÃO-2) (make-carta "paus" 6))
 
 ;; seleciona-carta: Mão Mesa -> Jogada
 ;; Objetivo: Dado uma mão e uma mesa, retorna a carta selecionada para jogar

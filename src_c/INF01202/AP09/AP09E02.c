@@ -1,103 +1,83 @@
-#include <stdlib.h>
-
 #include <stdio.h>
+#include <string.h>
+#define QUANTIDADE_RETANGULOS_SOBREPOSTOS 20
+#define QUANTIDADE_DADOS_RETANGULOS_SOBREPOSTOS 4
 
-#include <conio2.h>
+int colisao_de_retangulos(double retangulo1X, double retangulo1Y, double retangulo1Altura, double retangulo1Largura,
+                          double retangulo2X, double retangulo2Y, double retangulo2Altura, double retangulo2Largura);
+int main()
+{
+  // dividindo as declaracoes dos ints em várias linhas para facilitar a leitura
+  double retangulosSobrepostos[QUANTIDADE_RETANGULOS_SOBREPOSTOS][QUANTIDADE_DADOS_RETANGULOS_SOBREPOSTOS];
+  double retanguloReferenciaX, retanguloReferenciaY, retanguloReferenciaAltura, retanguloReferenciaLargura;
+  double retanguloAtualX, retanguloAtualY, retanguloAtualAltura, retanguloAtualLargura;
+  int quantidadeRetangulosComparacao, i, j, quantidadeSobreposicoes = 0;
 
-#include <windows.h>
+  printf("Digite o X do retangulo de referencia: ");
+  scanf("%lf", &retanguloReferenciaX);
+  printf("Digite o Y do retangulo de referencia: ");
+  scanf("%lf", &retanguloReferenciaY);
+  printf("Digite a largura do retangulo de referencia: ");
+  scanf("%lf", &retanguloReferenciaLargura);
+  printf("Digite a altura do retangulo de referencia: ");
+  scanf("%lf", &retanguloReferenciaAltura);
 
-#include <time.h>
+  printf("\nDigite a quantidade de retangulos que quer comparar: ");
+  scanf("%d", &quantidadeRetangulosComparacao);
+  printf("\n");
 
-#define ESPECIAL - 32
-#define SETA_ESQUERDA 75
-#define SETA_DIREITA 77
-#define SETA_CIMA 72
-#define SETA_BAIXO 80
-#define ESPACO 32
-#define ENTER 13
-#define ESC 27
-#define MAXIMO_X 80
-#define MAXIMO_Y 25
-#define MAXIMO_COR 15
+  for (i = 0; i < quantidadeRetangulosComparacao; i++)
+  {
 
-int main(void) {
+    printf("Digite o X do retangulo #%d: ", i + 1);
+    scanf("%lf", &retanguloAtualX);
+    printf("Digite o Y do retangulo #%d: ", i + 1);
+    scanf("%lf", &retanguloAtualY);
+    printf("Digite a largura do retangulo #%d: ", i + 1);
+    scanf("%lf", &retanguloAtualLargura);
+    printf("Digite a altura do retangulo #%d: ", i + 1);
+    scanf("%lf", &retanguloAtualAltura);
+    printf("\n");
 
-  int x, y, i, j, tecla, posicaoX = rand() % 80, posicaoY = rand() % 25, matriz[MAXIMO_Y][MAXIMO_X];
-  srand(time(NULL));
+    
+    if (
+        colisao_de_retangulos(retanguloReferenciaX, retanguloReferenciaY, retanguloReferenciaAltura, retanguloReferenciaLargura,
+                              retanguloAtualX, retanguloAtualY, retanguloAtualAltura, retanguloAtualLargura) == 1)
+    {
+      quantidadeSobreposicoes++;
 
-  for (i = 0; i < MAXIMO_Y; i++) {
-    for (j = 0; j < MAXIMO_X; j++) {
-      matriz[i][j] = WHITE;
+      retangulosSobrepostos[i][0] = retanguloAtualX;
+      retangulosSobrepostos[i][1] = retanguloAtualY;
+      retangulosSobrepostos[i][2] = retanguloAtualLargura;
+      retangulosSobrepostos[i][3] = retanguloAtualAltura;
     }
   }
 
-  for (x = 0; x < MAXIMO_X; x++) {
-    for (y = 0; y < MAXIMO_Y; y++) {
-      textbackground(matriz[y][x]);
-      gotoxy(x + 1, y + 1);
-      cprintf(" ");
-    }
+  printf("Sobreposicoes:\n");
+
+  for (i = 0; i < quantidadeSobreposicoes; i++)
+  {
+
+    printf("(x=%.1lf, y=%.1lf, dx=%.1lf,dy=%.1lf) \n", retangulosSobrepostos[i][0], retangulosSobrepostos[i][1], retangulosSobrepostos[i][2], retangulosSobrepostos[i][3]);
   }
 
-  textcolor(RED);
-  gotoxy(posicaoX, posicaoY);
-  printf("A");
+  printf("\nTotal %d", quantidadeSobreposicoes);
+  printf("\n");
 
-  do {
-    fflush(stdin);
+  return 0;
+}
 
-    if (kbhit()) {
-      tecla = getch();
+int colisao_de_retangulos(double retangulo1X, double retangulo1Y, double retangulo1Altura, double retangulo1Largura,
+                          double retangulo2X, double retangulo2Y, double retangulo2Altura, double retangulo2Largura)
+{
 
-      if (tecla == ESC) {
-        printf("\nENCERRANDO O PROGRAMA\n\n");
-      } else {
-        tecla = getch();
-
-        switch (tecla) {
-        case SETA_CIMA:
-          gotoxy(posicaoX, posicaoY);
-          printf(" ");
-
-          posicaoY--;
-
-          gotoxy(posicaoX, posicaoY);
-          printf("A");
-          break;
-        case SETA_DIREITA:
-          gotoxy(posicaoX, posicaoY);
-          printf(" ");
-
-          posicaoX++;
-
-          gotoxy(posicaoX, posicaoY);
-          printf("A");
-          break;
-
-        case SETA_ESQUERDA:
-          gotoxy(posicaoX, posicaoY);
-          printf(" ");
-
-          posicaoX--;
-
-          gotoxy(posicaoX, posicaoY);
-          printf("A");
-          break;
-        case SETA_BAIXO:
-          gotoxy(posicaoX, posicaoY);
-          printf(" ");
-
-          posicaoY++;
-
-          gotoxy(posicaoX, posicaoY);
-          printf("A");
-          break;
-        default:
-          printf("");
-        }
-      }
-    }
-  } while (tecla != ESC);
+  if ((retangulo1X + retangulo1Largura > retangulo2X) &&
+      (retangulo1X < retangulo2X) &&
+      (retangulo1Y + retangulo1Altura > retangulo2Y) &&
+      (retangulo1Y < retangulo2Y))
+  {
+    return 1;
+  }
 
   return 0;
 }
