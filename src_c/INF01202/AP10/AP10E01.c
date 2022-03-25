@@ -7,7 +7,7 @@ void min_e_max(double *vetor, int tamanho, double *menor, double *maior);
 int main()
 {
   int i, tamanhoVetor;
-  double menor, maior;
+  double menor, maior, vetor[TAMANHO_MAX_VETOR];
 
   while (tamanhoVetor < TAMANHO_MINIMO_VETOR || tamanhoVetor > TAMANHO_MAX_VETOR)
   {
@@ -19,9 +19,6 @@ int main()
       printf("Valor incorreto! O valor digitado deve ser entre 1 e 20\n\n");
     }
   }
-
-  // declarando vetor fora do inicio do programa, pois nao sabemos o tamanho dele até o usuario digitar
-  double vetor[tamanhoVetor];
 
   for (i = 0; i < tamanhoVetor; i++)
   {

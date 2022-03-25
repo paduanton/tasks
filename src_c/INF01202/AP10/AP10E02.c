@@ -6,7 +6,7 @@ int interseccao(int *Vi, int *Vj, int *Vk, int N);
 
 int main()
 {
-  int N = 1, i, tamanhoVetorInterseccao;
+  int N = 1, i, tamanhoVetorInterseccao, Vi[TAMANHO_MAX_VETOR], Vj[TAMANHO_MAX_VETOR], Vk[TAMANHO_MAX_VETOR];
 
   while (N < TAMANHO_MINIMO_VETOR || N > TAMANHO_MAX_VETOR)
   {
@@ -20,9 +20,6 @@ int main()
   }
 
   printf("\n");
-
-  // declarando vetores fora do inicio do programa, pois nao sabemos o tamanho deles até o usuario digitar
-  int Vi[N], Vj[N], Vk[N];
 
   for (i = 0; i < N; i++)
   {
