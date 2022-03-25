@@ -1,103 +1,73 @@
-#include <stdlib.h>
-
 #include <stdio.h>
+#define TAMANHO_MAX_VETOR 20
+#define TAMANHO_MINIMO_VETOR 2
 
-#include <conio2.h>
+int interseccao(int *Vi, int *Vj, int *Vk, int N);
 
-#include <windows.h>
+int main()
+{
+  int N = 1, i, tamanhoVetorInterseccao;
 
-#include <time.h>
+  while (N < TAMANHO_MINIMO_VETOR || N > TAMANHO_MAX_VETOR)
+  {
+    printf("Digite o tamanho dos vetores: ");
+    scanf("%d", &N);
 
-#define ESPECIAL - 32
-#define SETA_ESQUERDA 75
-#define SETA_DIREITA 77
-#define SETA_CIMA 72
-#define SETA_BAIXO 80
-#define ESPACO 32
-#define ENTER 13
-#define ESC 27
-#define MAXIMO_X 80
-#define MAXIMO_Y 25
-#define MAXIMO_COR 15
-
-int main(void) {
-
-  int x, y, i, j, tecla, posicaoX = rand() % 80, posicaoY = rand() % 25, matriz[MAXIMO_Y][MAXIMO_X];
-  srand(time(NULL));
-
-  for (i = 0; i < MAXIMO_Y; i++) {
-    for (j = 0; j < MAXIMO_X; j++) {
-      matriz[i][j] = WHITE;
+    if (N < TAMANHO_MINIMO_VETOR || N > TAMANHO_MAX_VETOR)
+    {
+      printf("Valor incorreto! O valor digitado deve ser entre 2 e 20\n\n");
     }
   }
 
-  for (x = 0; x < MAXIMO_X; x++) {
-    for (y = 0; y < MAXIMO_Y; y++) {
-      textbackground(matriz[y][x]);
-      gotoxy(x + 1, y + 1);
-      cprintf(" ");
-    }
+  printf("\n");
+
+  // declarando vetores fora do inicio do programa, pois nao sabemos o tamanho deles até o usuario digitar
+  int Vi[N], Vj[N], Vk[N];
+
+  for (i = 0; i < N; i++)
+  {
+    printf("Digite o valor #%d do primeiro vetor: ", i + 1);
+    scanf("%d", Vi + i);
   }
 
-  textcolor(RED);
-  gotoxy(posicaoX, posicaoY);
-  printf("A");
+  printf("\n");
 
-  do {
-    fflush(stdin);
+  for (i = 0; i < N; i++)
+  {
+    printf("Digite o valor #%d do segundo vetor: ", i + 1);
+    scanf("%d", Vj + i);
+  }
 
-    if (kbhit()) {
-      tecla = getch();
+  tamanhoVetorInterseccao = interseccao(Vi, Vj, Vk, N);
 
-      if (tecla == ESC) {
-        printf("\nENCERRANDO O PROGRAMA\n\n");
-      } else {
-        tecla = getch();
+  printf("\n\nInterseccao: ");
 
-        switch (tecla) {
-        case SETA_CIMA:
-          gotoxy(posicaoX, posicaoY);
-          printf(" ");
+  for (i = 0; i < tamanhoVetorInterseccao; i++)
+  {
+    printf("%d ", Vk[i]);
+  }
 
-          posicaoY--;
-
-          gotoxy(posicaoX, posicaoY);
-          printf("A");
-          break;
-        case SETA_DIREITA:
-          gotoxy(posicaoX, posicaoY);
-          printf(" ");
-
-          posicaoX++;
-
-          gotoxy(posicaoX, posicaoY);
-          printf("A");
-          break;
-
-        case SETA_ESQUERDA:
-          gotoxy(posicaoX, posicaoY);
-          printf(" ");
-
-          posicaoX--;
-
-          gotoxy(posicaoX, posicaoY);
-          printf("A");
-          break;
-        case SETA_BAIXO:
-          gotoxy(posicaoX, posicaoY);
-          printf(" ");
-
-          posicaoY++;
-
-          gotoxy(posicaoX, posicaoY);
-          printf("A");
-          break;
-        default:
-          printf("");
-        }
-      }
-    }
-  } while (tecla != ESC);
+  printf("\n");
 
   return 0;
+}
+
+int interseccao(int *Vi, int *Vj, int *Vk, int N)
+{
+  int tamanhoVetorInterseccao = 0, i, j;
+
+  for (i = 0; i < N; i++)
+  {
+    for (j = 0; j < N; j++)
+    {
+      if (Vi[i] == Vj[j])
+      {
+        Vk[tamanhoVetorInterseccao] = *(Vi + i);
+
+        tamanhoVetorInterseccao++;
+      }
+    }
+  }
+
+  return tamanhoVetorInterseccao;
 }

@@ -6,7 +6,7 @@ void min_e_max(double *vetor, int tamanho, double *menor, double *maior);
 
 int main()
 {
-  int i, tamanhoVetor = 0;
+  int i, tamanhoVetor;
   double menor, maior;
 
   while (tamanhoVetor < TAMANHO_MINIMO_VETOR || tamanhoVetor > TAMANHO_MAX_VETOR)
