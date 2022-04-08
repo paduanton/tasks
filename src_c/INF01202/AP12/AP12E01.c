@@ -92,6 +92,8 @@ int main()
 
   if (codigoAcao == CODIGO_ACAO_LEITURA)
   {
+    printf("Lendo os dados do arquivo 'jogadores_pontos.bin'");
+
     le_arquivo(jogadores);
 
     printf("%*s%*s\n", -20, "JOGADOR", -20, "PONTOS");
@@ -107,6 +109,8 @@ int main()
   {
     le_dados(jogadores);
     escreve_arquivo(jogadores);
+
+    printf("Dados salvos com sucesso no arquivo 'jogadores_pontos.bin'\n");
   }
   else
   {
