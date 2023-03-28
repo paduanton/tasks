@@ -1,8 +1,8 @@
-package br.edu.ifsul.sapucaia.filha_pilha;
+package br.edu.ifsul.sapucaia.fila_pilha;
+
+import static br.edu.ifsul.sapucaia.fila_pilha.Main.maxElemento;
 
 import java.util.Scanner;
-
-import static br.edu.ifsul.sapucaia.filha_pilha.Main.maxElemento;
 
 class Fila {
     Scanner t = new Scanner(System.in);

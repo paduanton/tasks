@@ -1,4 +1,4 @@
-package br.edu.ifsul.sapucaia.filha_pilha;
+package br.edu.ifsul.sapucaia.fila_pilha;
 
 import java.util.Scanner;
 
