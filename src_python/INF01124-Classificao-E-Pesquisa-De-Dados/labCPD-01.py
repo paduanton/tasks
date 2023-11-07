@@ -70,7 +70,7 @@ def binary_search(array, index, inicio, fim, comparacoes):
         'comparacoes': comparacoes
     }
 
-    meio = (inicio + fim) // 2 # operador // é necessário para garantir que estamos retornando um numero inteiro à variavel 'meio'  
+    meio = (inicio + fim) // 2
 
     comparacoes = comparacoes + 1
 
@@ -87,7 +87,27 @@ def binary_search(array, index, inicio, fim, comparacoes):
 def shellsort(array):
     trocas = comparacoes = 0
 
-    # defina aqui sua versão da função shellsort
+    quantidade_itens = len(array)
+
+    meio = quantidade_itens // 2
+
+    while meio > 0:
+        for i in range(meio, quantidade_itens):
+            valor = array[i]
+            
+            j = i
+
+            while j >= meio and array[j - meio] > valor:
+                comparacoes = comparacoes + 1
+                intervalo = j - meio
+
+                array[j] = array[intervalo]
+                trocas = trocas + 1
+                j = intervalo
+            array[j] = valor
+            trocas = trocas + 1
+
+        meio = meio // 2
 
     return {'trocas':trocas, 'comparacoes':comparacoes}                         # retorna quantidade de operações
 
