@@ -1,6 +1,6 @@
-package br.edu.ifsul.sapucaia.banco;
+package ifsul.banco;
 
-import br.edu.ifsul.sapucaia.banco.Conta;
+import ifsul.banco.Conta;
 
 /**
  *

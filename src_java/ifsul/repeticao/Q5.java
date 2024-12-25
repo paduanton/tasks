@@ -1,4 +1,4 @@
-package br.edu.ifsul.sapucaia.repeticao;
+package ifsul.repeticao;
 public class Q5 {
 	public static void main(String[] args) {
 		short h = 0, cont = 0, soma = 0;

@@ -1,4 +1,4 @@
-package br.edu.ifsul.sapucaia.desafio;
+package ifsul.desafio;
 import java.util.Scanner;
 public class D1 {
 	public static void main(String[] args) {

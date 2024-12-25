@@ -1,4 +1,4 @@
-package br.edu.ifsul.sapucaia.thelastchaos2;
+package ifsul.thelastchaos2;
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.plaf.FontUIResource;

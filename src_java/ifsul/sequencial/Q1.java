@@ -1,4 +1,4 @@
-package br.edu.ifsul.sapucaia.sequencial;
+package ifsul.sequencial;
 public class Q1 {
 	public static void main(String[]args) {
 		

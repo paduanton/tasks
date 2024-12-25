@@ -1,4 +1,4 @@
-package br.edu.ifsul.sapucaia.thelastchaos2;
+package ifsul.thelastchaos2;
 import javax.swing.UIManager;
 public class buttons {
 	public static void buttons(String opt1, String opt2, String opt3) {

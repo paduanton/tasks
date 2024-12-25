@@ -1,4 +1,4 @@
-package br.edu.ifsul.sapucaia.notebook;
+package ifsul.notebook;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;

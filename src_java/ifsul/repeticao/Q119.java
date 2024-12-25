@@ -1,4 +1,4 @@
-package br.edu.ifsul.sapucaia.repeticao;
+package ifsul.repeticao;
 import java.util.Scanner;
 public class Q119 {
 	public static void main(String[] args) {

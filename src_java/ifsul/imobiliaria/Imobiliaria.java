@@ -1,4 +1,4 @@
-package br.edu.ifsul.sapucaia.imobiliaria;
+package ifsul.imobiliaria;
 public class Imobiliaria {
 	private static void main(String[] args) throws Exception {
 		Funcionario funcionario = new Funcionario();

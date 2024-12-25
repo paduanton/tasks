@@ -1,4 +1,4 @@
-package br.edu.ifsul.sapucaia.thelastchaos2;
+package ifsul.thelastchaos2;
 import java.util.Random;
 import javax.swing.JOptionPane;
 public class battle {

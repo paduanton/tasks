@@ -1,4 +1,4 @@
-package br.edu.ifsul.sapucaia.repeticao;
+package ifsul.repeticao;
 public class Q22_DOWHILE {
 	public static void main(String[] args) {
 		short soma = 0; byte h = 50;

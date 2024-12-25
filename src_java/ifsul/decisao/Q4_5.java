@@ -1,4 +1,4 @@
-package br.edu.ifsul.sapucaia.decisao;
+package ifsul.decisao;
 import java.util.Scanner;
 public class Q4_5 {
 	public static void main(String[] args) {

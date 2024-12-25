@@ -1,6 +1,6 @@
-package br.edu.ifsul.sapucaia.fila_pilha;
+package ifsul.fila_pilha;
 
-import static br.edu.ifsul.sapucaia.fila_pilha.Main.maxElemento;
+import static ifsul.fila_pilha.Main.maxElemento;
 
 import java.util.Scanner;
 

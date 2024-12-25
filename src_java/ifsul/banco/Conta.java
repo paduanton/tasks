@@ -1,4 +1,4 @@
-package br.edu.ifsul.sapucaia.banco;
+package ifsul.banco;
 /**
  *
  * @author anton

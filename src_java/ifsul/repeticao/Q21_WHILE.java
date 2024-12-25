@@ -1,4 +1,4 @@
-package br.edu.ifsul.sapucaia.repeticao;
+package ifsul.repeticao;
 public class Q21_WHILE {
 	public static void main(String[] args) {
 		short soma = 0, h = 19;

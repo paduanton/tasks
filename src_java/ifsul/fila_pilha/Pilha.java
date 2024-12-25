@@ -1,4 +1,4 @@
-package br.edu.ifsul.sapucaia.fila_pilha;
+package ifsul.fila_pilha;
 
 import static Fila_Pilha.Main.maxElemento;
 

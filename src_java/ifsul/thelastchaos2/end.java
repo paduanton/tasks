@@ -1,4 +1,4 @@
-package br.edu.ifsul.sapucaia.thelastchaos2;
+package ifsul.thelastchaos2;
 import javax.swing.JOptionPane;
 public class end {
 public static int end(int end) {  // fourth method: the end game

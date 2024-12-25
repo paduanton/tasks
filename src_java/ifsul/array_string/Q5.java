@@ -1,4 +1,4 @@
-package br.edu.ifsul.sapucaia.array_string;
+package ifsul.array_string;
 import java.util.Scanner;
 public class Q5 {
 	public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package br.edu.ifsul.sapucaia.jogos;
+package ifsul.jogos;
 
 public class JogoDoRato {
     public static void main(String[] args) {

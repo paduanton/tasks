@@ -1,4 +1,4 @@
-package br.edu.ifsul.sapucaia.novo_banco;
+package ifsul.novo_banco;
 
 public class Imovel {
     private int tamanho;

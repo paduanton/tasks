@@ -1,4 +1,4 @@
-package br.edu.ifsul.sapucaia.thelastchaos2;
+package ifsul.thelastchaos2;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 public class cancel {

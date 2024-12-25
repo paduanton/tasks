@@ -1,4 +1,4 @@
-package br.edu.ifsul.sapucaia.jogos;
+package ifsul.jogos;
 
 import java.util.Scanner;
 public class Quiz {

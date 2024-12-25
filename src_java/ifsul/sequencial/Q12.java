@@ -1,4 +1,4 @@
-package br.edu.ifsul.sapucaia.sequencial;
+package ifsul.sequencial;
 import java.util.Scanner;
 public class Q12 {
 	public static void main(String[] args) {

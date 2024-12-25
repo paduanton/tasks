@@ -1,4 +1,4 @@
-package br.edu.ifsul.sapucaia.CalculadoraGeometrica;
+package ifsul.CalculadoraGeometrica;
 
 public class Calcula {
     public double num1;

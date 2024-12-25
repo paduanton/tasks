@@ -1,4 +1,4 @@
-package br.edu.ifsul.sapucaia.CalculadoraGeometrica;
+package ifsul.CalculadoraGeometrica;
 
 import java.util.Scanner;
 
