@@ -1,0 +1,16 @@
+Começaremos com A B C D E F G H!
+
+Agora, vamos subir uma oitava? A B C
+
+E agora, baixar... A B C.
+
+Trocando instrumentos com dígitos: 1 2 3
+
+Espaços duplicam volume: vamos ver isso.
+
+Pausa com letra não mapeada: X Y Z
+
+Instrumentos por pontuação: ; : ,
+
+Fim de linha:
+E aqui terminamos!
