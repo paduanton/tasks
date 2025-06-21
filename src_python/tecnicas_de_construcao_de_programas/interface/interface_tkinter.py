@@ -179,7 +179,7 @@ class TelaReproducao(tk.Frame):
             widget.destroy()
 
         for i, nota in enumerate(self.controller.texto_musical.notas[:20]):
-            tk.Label(self.notas_frame, text=f"Nota {i+1}: {nota.nome} (Duração: {nota.duracao})").pack(anchor="w")
+            tk.Label(self.notas_frame, text=f"Nota {i+1}: {nota.nome}").pack(anchor="w")
 
     def reproduzir(self):
         try:
