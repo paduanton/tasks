@@ -1,6 +1,6 @@
 import re
 from .mapeador_texto_musical import MapeadorTextoMusical
-
+from .controlador_audio import INSTRUMENTOS_GM
 class TextoMusical:
     def __init__(self):
         self.conteudo = ""
@@ -28,9 +28,18 @@ class TextoMusical:
         return True
 
     def mapear_para_notas(self):
-        mapeador = MapeadorTextoMusical(self.conteudo)
+        mapeador = MapeadorTextoMusical(
+            texto=self.conteudo,
+            oitava=self.oitava,
+            instrumento=self.instrumento
+        )
+
         self.notas.clear()
         for c in self.conteudo:
             nota = mapeador.mapear_caractere(c) 
             if nota:
                 self.notas.append(nota)
+    def configurar(self, bpm=120, instrumento="Acoustic Grand Piano", oitava=4):
+        self.bpm = bpm
+        self.instrumento = INSTRUMENTOS_GM.get(instrumento, 0)
+        self.oitava = oitava

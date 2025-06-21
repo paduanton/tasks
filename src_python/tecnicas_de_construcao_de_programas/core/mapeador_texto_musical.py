@@ -2,15 +2,17 @@ import random
 from .nota_musical import NotaMusical
 
 class MapeadorTextoMusical:
-    def __init__(self, texto):
+    def __init__(self, texto, oitava=4, instrumento=56):
         self.texto_original = texto
-        self.instrumento_atual = 0
-        self.oitava_atual = 5
+        self.instrumento_atual = instrumento
+        self.oitava_atual = oitava
         self.volume_default = 100
         self.volume_atual = self.volume_default
         self.bpm = 120
         self.caractere_anterior = None
         self.nota_anterior = None
+        self.oitava = oitava
+        self.instrumento = instrumento
 
     def mapear_caractere(self, c):
         if c == ' ':        
