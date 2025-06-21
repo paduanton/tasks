@@ -147,7 +147,7 @@ class TelaComposicao(tk.Frame):
 
 class TelaReproducao(tk.Frame):
     def __init__(self, parent, controller):
-        self.caminho_base_arquivos_mid = "C:/Users/AntonioPádua/personal/tasks"
+        self.caminho_base_arquivos = "C:/Users/AntonioPádua/personal/tasks"
         super().__init__(parent)
         self.controller = controller
 
@@ -183,14 +183,13 @@ class TelaReproducao(tk.Frame):
 
     def reproduzir(self):
         try:
-            musica_mid = f"{self.caminho_base_arquivos_mid}/{self.controller.controlador.arquivo_saida}"
+            musica_mid = f"{self.caminho_base_arquivos}/{self.controller.controlador.arquivo_saida}"
 
             if not os.path.exists(self.controller.controlador.arquivo_saida):
                 messagebox.showerror("Erro", "Nenhum arquivo MIDI encontrado. Por favor, gere uma composição primeiro.")
                 return
 
-            print(f"Reproduzindo arquivo: {musica_mid}")
-            pygame.mixer.music.load(musica_mid)
+            pygame.mixer.music.load(self.controller.controlador.arquivo_saida)
             pygame.mixer.music.play()
             self.status_bar.config(text="Reproduzindo...")
             self.atualizar_progresso()
