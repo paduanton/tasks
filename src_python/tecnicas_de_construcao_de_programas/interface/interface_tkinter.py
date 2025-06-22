@@ -191,7 +191,7 @@ class TelaReproducao(tk.Frame):
             widget.destroy()
 
         for i, nota in enumerate(self.controller.texto_musical.notas[:20]):
-            tk.Label(self.notas_frame, text=f"Nota {i+1}: {nota.nome} (Duração: {nota.duracao})").pack(anchor="w")
+            tk.Label(self.notas_frame, text=f"Nota {i+1}: {nota.nome}").pack(anchor="w")
 
     def reproduzir(self):
         try:
@@ -214,7 +214,6 @@ class TelaReproducao(tk.Frame):
         if pygame.mixer.music.get_busy():
             tempo_passado = time.time() - self._inicio_real
             self.progresso["value"] = tempo_passado
-            print(f"tempo decorrido: {tempo_passado:.2f}s / {self._duracao_total:.2f}s")
             self.after(200, self.atualizar_progresso)
         else:
             self.progresso["value"] = 0

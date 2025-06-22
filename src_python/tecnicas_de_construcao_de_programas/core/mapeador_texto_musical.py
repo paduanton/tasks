@@ -17,13 +17,9 @@ class MapeadorTextoMusical:
     def mapear_caractere(self, c):
         par = f"{self.caractere_anterior or ''}{c}"
 
-        # DEBUG
-        print(f"Par: '{par}'  | Caractere atual: '{c}' | Caractere anterior: '{self.caractere_anterior}' | BPM atual: {self.bpm}")
-
         # checar pares que mudam estado primeiro
         if par.upper() == 'M+':
             self.bpm = min(self.bpm + 80, 300) 
-            print(f"BPM aumentado para: {self.bpm}")
             self.caractere_anterior = None
             return None
 
@@ -83,7 +79,6 @@ class MapeadorTextoMusical:
 
         elif c == ';':
             self.bpm = random.randint(40, 208)
-            print(f"BPM aleatório definido para: {self.bpm}")
             self.caractere_anterior = c
             return None
 
