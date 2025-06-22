@@ -4,7 +4,6 @@ from core.texto_musical import TextoMusical
 from core.controlador_audio import ControladorAudio
 import pygame
 import time
-import os
 
 class InterfaceTkinter:
     def __init__(self, root):
@@ -126,28 +125,40 @@ class TelaComposicao(tk.Frame):
         self.controller.texto_musical.ler_texto(entrada)
 
         if not self.controller.texto_musical.validar_texto():
-            messagebox.showerror("Erro", "Texto inválido. Use apenas A-H, +, -, <, > e números.")
+            messagebox.showerror("Erro", "Texto inválido. Use apenas A-G, +, -, R, M+, ; e espaços.")
             return
 
-        bpm = self.bpm_var.get()
+        # Pega os valores da interface
+        bpm_inicial = self.bpm_var.get()
         instrumento = self.instrumento_var.get()
         oitava = self.oitava_var.get()
 
-        self.controller.texto_musical.configurar(bpm=bpm, instrumento=instrumento, oitava=oitava)
+        # 1. Aplica configurações iniciais no texto
+        self.controller.texto_musical.configurar(bpm=bpm_inicial, instrumento=instrumento, oitava=oitava)
+
+        # 2. Mapeia texto → notas (aqui o BPM pode mudar com 'M+' ou ';')
         self.controller.texto_musical.mapear_para_notas()
 
+        # 3. Pega o BPM final após o mapeamento
+        bpm_final = self.controller.texto_musical.bpm
+
+        # 4. Configura o controlador com o BPM final
         self.controller.controlador.limpar()
+        self.controller.controlador.configurar(bpm=bpm_final, instrumento_nome=instrumento)
         self.controller.controlador.set_lista_notas(self.controller.texto_musical.notas)
 
+        # 5. Reproduz o MIDI
         nome_arquivo = f"musica_{int(time.time())}"
         self.controller.controlador.iniciar_reproducao(nome_arquivo)
 
+        # 6. Vai para tela de reprodução
         self.controller.mostrar_tela("TelaReproducao")
         self.controller.frames["TelaReproducao"].atualizar_interface()
 
+
+
 class TelaReproducao(tk.Frame):
     def __init__(self, parent, controller):
-        self.caminho_base_arquivos = "C:/Users/AntonioPádua/personal/tasks"
         super().__init__(parent)
         self.controller = controller
 
@@ -183,12 +194,6 @@ class TelaReproducao(tk.Frame):
 
     def reproduzir(self):
         try:
-            musica_mid = f"{self.caminho_base_arquivos}/{self.controller.controlador.arquivo_saida}"
-
-            if not os.path.exists(self.controller.controlador.arquivo_saida):
-                messagebox.showerror("Erro", "Nenhum arquivo MIDI encontrado. Por favor, gere uma composição primeiro.")
-                return
-
             pygame.mixer.music.load(self.controller.controlador.arquivo_saida)
             pygame.mixer.music.play()
             self.status_bar.config(text="Reproduzindo...")

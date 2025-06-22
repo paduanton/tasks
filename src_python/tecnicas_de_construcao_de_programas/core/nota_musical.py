@@ -1,10 +1,11 @@
 class NotaMusical:
-    def __init__(self, nome, duracao, oitava, volume=100, instrumento=0):
+    def __init__(self, nome, duracao, oitava, volume=100, instrumento=0, bpm=120):
         self.nome = nome
         self.duracao = duracao
         self.oitava = oitava
         self.volume = volume
         self.instrumento = instrumento
+        self.bpm = bpm
 
     def tocar(self, midi_file, canal, tempo):
         if self.nome == ' ':

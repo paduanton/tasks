@@ -6,7 +6,7 @@ class TextoMusical:
         self.conteudo = ""
         self.notas = []
         self.valido = False
-        self.bpm = 120
+        self.bpm = 240
 
     def ler_texto(self, input_str):
         self.conteudo = input_str
@@ -31,7 +31,8 @@ class TextoMusical:
         mapeador = MapeadorTextoMusical(
             texto=self.conteudo,
             oitava=self.oitava,
-            instrumento=self.instrumento
+            instrumento=self.instrumento,
+            bpm=self.bpm
         )
 
         self.notas.clear()
@@ -39,6 +40,7 @@ class TextoMusical:
             nota = mapeador.mapear_caractere(c) 
             if nota:
                 self.notas.append(nota)
+        self.bpm = mapeador.get_bpm()
     def configurar(self, bpm=120, instrumento="Acoustic Grand Piano", oitava=4):
         self.bpm = bpm
         self.instrumento = INSTRUMENTOS_GM.get(instrumento, 0)

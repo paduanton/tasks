@@ -60,23 +60,32 @@ class ControladorAudio:
         midi_file = MIDIFile(1)
         track = 0
         canal = 0
-        tempo = 0
+        tempo_batidas = 0.0
+        bpm_atual = None
 
-        midi_file.addTempo(track, tempo, self.bpm)
-        midi_file.addProgramChange(track, canal, tempo, self.instrumento)
+        bpm_inicial = self.lista_notas[0].bpm if self.lista_notas else self.bpm
+        midi_file.addTempo(track, tempo_batidas, bpm_inicial)
 
-        if self.lista_notas:
-            instrumento = self.lista_notas[0].instrumento
-            midi_file.addProgramChange(0, 0, 0, instrumento)
+        instrumento_inicial = self.lista_notas[0].instrumento if self.lista_notas else self.instrumento
+        midi_file.addProgramChange(track, canal, tempo_batidas, instrumento_inicial)
 
         for nota in self.lista_notas:
             pitch = nota.converter_para_valor_midi()
             if not isinstance(pitch, int):
                 continue
-            duracao = nota.duracao
+
+            duracao_beat = nota.duracao
             volume = getattr(nota, 'volume', self.volume_global)
-            midi_file.addNote(track, canal, pitch, tempo, duracao, volume)
-            tempo += duracao
+            instrumento = getattr(nota, 'instrumento', self.instrumento)
+            bpm_nota = getattr(nota, 'bpm', self.bpm)
+
+            if bpm_nota != bpm_atual:
+                midi_file.addTempo(track, tempo_batidas, bpm_nota)
+                bpm_atual = bpm_nota
+
+            # Continue inserindo as notas...
+            midi_file.addNote(track, canal, pitch, tempo_batidas, duracao_beat, volume)
+            tempo_batidas += duracao_beat
 
         with open(mid_path, "wb") as output:
             midi_file.writeFile(output)
