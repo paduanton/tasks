@@ -4,6 +4,7 @@ from core.texto_musical import TextoMusical
 from core.controlador_audio import ControladorAudio
 import pygame
 import time
+from mutagen.mp3 import MP3
 
 class InterfaceTkinter:
     def __init__(self, root):
@@ -190,22 +191,31 @@ class TelaReproducao(tk.Frame):
             widget.destroy()
 
         for i, nota in enumerate(self.controller.texto_musical.notas[:20]):
-            tk.Label(self.notas_frame, text=f"Nota {i+1}: {nota.nome}").pack(anchor="w")
+            tk.Label(self.notas_frame, text=f"Nota {i+1}: {nota.nome} (Duração: {nota.duracao})").pack(anchor="w")
 
     def reproduzir(self):
         try:
             pygame.mixer.music.load(self.controller.controlador.arquivo_saida)
             pygame.mixer.music.play()
             self.status_bar.config(text="Reproduzindo...")
-            self.atualizar_progresso()
+            self.iniciar_progresso(self.controller.controlador.arquivo_saida)
         except Exception as e:
             messagebox.showerror("Erro", f"Erro ao reproduzir: {str(e)}")
 
+
+    def iniciar_progresso(self, caminho_mp3):
+        audio = MP3(caminho_mp3)
+        self._duracao_total = audio.info.length
+        self._inicio_real = time.time()
+        self.progresso["maximum"] = self._duracao_total
+        self.atualizar_progresso()
+
     def atualizar_progresso(self):
         if pygame.mixer.music.get_busy():
-            pos = pygame.mixer.music.get_pos() / 1000
-            self.progresso["value"] = pos
-            self.after(100, self.atualizar_progresso)
+            tempo_passado = time.time() - self._inicio_real
+            self.progresso["value"] = tempo_passado
+            print(f"tempo decorrido: {tempo_passado:.2f}s / {self._duracao_total:.2f}s")
+            self.after(200, self.atualizar_progresso)
         else:
             self.progresso["value"] = 0
             self.status_bar.config(text="Reprodução concluída")
