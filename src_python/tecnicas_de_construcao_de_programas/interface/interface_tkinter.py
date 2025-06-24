@@ -124,6 +124,10 @@ class TelaComposicao(tk.Frame):
     def preparar_reproducao(self):
         entrada = self.text_input.get("1.0", tk.END).strip()
         self.controller.texto_musical.ler_texto(entrada)
+        
+        if not entrada:
+            messagebox.showwarning("Aviso", "O campo de texto está vazio. Por favor, insira um texto musical.")
+            return
 
         if not self.controller.texto_musical.validar_texto():
             messagebox.showerror("Erro", "Texto inválido. Use apenas A-G, +, -, R, M+, ; e espaços.")
