@@ -1,3 +1,6 @@
+Antonio de Pádua Santos Júnior - Cartão Matrícula: 00318785 - Turma B
+Vitor Alexandre Arguilar - Cartão Matrícula: 00344617 - Turma A
+
 # Kit othello
 Kit para executar partidas de Othello e Jogo da Velha invertido (Tic-Tac-Toe Misere) e implementar algoritmos de busca com adversário.
 
