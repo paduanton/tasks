@@ -1,7 +1,6 @@
-# othello_minimax_custom.py
 from .minimax import minimax_move
 
-DEPTH = 5  # ajuste aqui
+DEPTH = 5
 MASK = [
     [100,-20,10, 5, 5,10,-20,100],
     [-20,-50,-2,-2,-2,-2,-50,-20],
@@ -42,13 +41,10 @@ def _corner_control(state, me):
     return 25 * (me_cnt - opp_cnt)
 
 def _mobility(state, me):
-    # Mobilidade simples: minhas jogadas – jogadas do oponente (se disponível).
     my_moves = len(state.legal_moves())
-    # Se o kit oferecer função para listar as jogadas do oponente, use-a aqui.
-    # Caso contrário, comente a linha abaixo e retorne apenas my_moves.
     try:
         opp = _opp(me)
-        opp_moves = len(state.legal_moves_for(opp))  # se NÃO existir, isso dará exceção
+        opp_moves = len(state.legal_moves_for(opp))
     except Exception:
         opp_moves = 0
     return my_moves - opp_moves
@@ -59,11 +55,9 @@ def evaluate_custom(state, me):
         if w is None:
             return 0.0
         return 1.0 if w == me else -1.0
-
     w_mob = 5.0
     w_pos = 1.0
     w_cor = 15.0
-
     return (
         w_mob * _mobility(state, me) +
         w_pos * _positional(state, me) +

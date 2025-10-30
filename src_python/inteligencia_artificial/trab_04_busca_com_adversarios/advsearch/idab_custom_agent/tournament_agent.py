@@ -1,10 +1,8 @@
-# tournament_agent.py
 import time
 from .minimax import minimax_move
 from .othello_minimax_custom import evaluate_custom
 
 def make_move(state):
-    # Iterative deepening com margem para não estourar 5 s
     deadline = time.time() + 4.8
     best = None
     depth = 3

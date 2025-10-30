@@ -1,8 +1,7 @@
 from .minimax import minimax_move
 
-DEPTH = 5  # ajuste livre
+DEPTH = 5
 
-# máscara do kit (EVAL_TEMPLATE) — NÃO ALTERAR
 EVAL_TEMPLATE = [
     [100, -30, 6, 2, 2, 6, -30, 100],
     [-30, -50, 1, 1, 1, 1, -50, -30],
@@ -13,8 +12,6 @@ EVAL_TEMPLATE = [
     [-30, -50, 1, 1, 1, 1, -50, -30],
     [100, -30, 6, 2, 2, 6, -30, 100]
 ]
-
-# ---------- helpers ----------
 
 def _cell_owner(cell):
     if cell is None:
@@ -39,11 +36,7 @@ def _cell_owner(cell):
                 return who
     return None
 
-
 def _matrix8(state_or_board):
-    """
-    Extrai 8x8 do board. Prioriza 'tiles' conforme o kit.
-    """
     board = getattr(state_or_board, "board", state_or_board)
 
     tiles = getattr(board, "tiles", None)
@@ -86,13 +79,7 @@ def _matrix8(state_or_board):
 
     raise RuntimeError("Não foi possível extrair a matriz 8x8 do board.")
 
-# ---------- avaliação e agente ----------
-
 def evaluate_mask(state, me):
-    """
-    Soma da máscara das minhas peças menos a do oponente, para 'me'.
-    Convenção do kit: r=0 é a 1ª linha (topo), c=0 é a 1ª coluna (esquerda).
-    """
     m = _matrix8(state)
     sm = so = 0
     for r in range(8):

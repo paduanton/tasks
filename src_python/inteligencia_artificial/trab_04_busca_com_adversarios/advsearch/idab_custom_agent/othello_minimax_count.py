@@ -1,14 +1,8 @@
 from .minimax import minimax_move
 
-DEPTH = 5  # ajuste livre
-
-# ---------- helpers comuns ----------
+DEPTH = 5
 
 def _cell_owner(cell):
-    """
-    Normaliza a peça para 'B', 'W' ou None.
-    Aceita int (1/-1), str ('B','W','.'), ou objetos com atributos usuais.
-    """
     if cell is None:
         return None
     if isinstance(cell, int):
@@ -31,15 +25,8 @@ def _cell_owner(cell):
                 return who
     return None
 
-
 def _matrix8(state_or_board):
-    """
-    Extrai uma matriz 8x8 (lista de listas de chars) do board.
-    Prioriza 'tiles' (conforme o kit), depois fallbacks.
-    """
     board = getattr(state_or_board, "board", state_or_board)
-
-    # 1) tiles (lista de strings 8x8)
     tiles = getattr(board, "tiles", None)
     if tiles is not None:
         try:
@@ -47,8 +34,6 @@ def _matrix8(state_or_board):
                 return [[tiles[r][c] for c in range(8)] for r in range(8)]
         except Exception:
             pass
-
-    # 2) outros atributos 2D
     for attr in ("grid", "board", "cells", "state", "matrix"):
         mat = getattr(board, attr, None)
         if mat is not None:
@@ -57,15 +42,11 @@ def _matrix8(state_or_board):
                     return [[mat[r][c] for c in range(8)] for r in range(8)]
             except Exception:
                 pass
-
-    # 3) indexação dupla
     try:
         _ = board[0][0]
         return [[board[r][c] for c in range(8)] for r in range(8)]
     except Exception:
         pass
-
-    # 4) parsing textual (último recurso)
     txt = None
     to_str = getattr(board, "to_string", None)
     if callable(to_str):
@@ -80,11 +61,7 @@ def _matrix8(state_or_board):
     if len(lines) >= 8:
         lines = lines[-8:]
         return [[lines[r][c] for c in range(8)] for r in range(8)]
-
     raise RuntimeError("Não foi possível extrair a matriz 8x8 do board.")
-
-
-# ---------- avaliação e agente ----------
 
 def _counts(state):
     m = _matrix8(state)
@@ -96,15 +73,10 @@ def _counts(state):
             elif who == 'W': nw += 1
     return nb, nw
 
-
 def evaluate_count(state, me):
-    """
-    (#minhas - #oponente) para o jogador 'me'.
-    """
     nb, nw = _counts(state)
     diff = nb - nw
     return float(diff if me == 'B' else -diff)
-
 
 def make_move(state):
     return minimax_move(state, depth=DEPTH, eval_fn=evaluate_count, time_limit=4.5)
