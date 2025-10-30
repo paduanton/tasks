@@ -14,7 +14,12 @@ MASK = [
 CORNERS = [(0,0),(0,7),(7,0),(7,7)]
 
 def _grid(state):
-    return getattr(state.board, "grid", None) or getattr(state.board, "board", None)
+    b = state.board
+    tiles = getattr(b, "tiles", None)
+    if tiles is not None and len(tiles) == 8:
+        return tiles
+    return getattr(b, "grid", None) or getattr(b, "board", None)
+
 
 def _opp(me):
     return 'W' if me == 'B' else 'B'

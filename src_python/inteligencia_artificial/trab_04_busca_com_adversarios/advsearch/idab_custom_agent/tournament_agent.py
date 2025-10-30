@@ -14,4 +14,4 @@ def make_move(state):
         if mv is not None:
             best = mv
         depth += 1
-    return best
+    return best if best is not None else (next(iter(state.legal_moves()), None))
