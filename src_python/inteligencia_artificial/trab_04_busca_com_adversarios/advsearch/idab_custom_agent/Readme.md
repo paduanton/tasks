@@ -1,8 +1,5 @@
 idab_custom_agent
 
-Integrantes
-Antonio de Pádua Santos Júnior — Cartão: 00318785 — Turma B
-Vitor Alexandre Arguilar — Cartão: 00344617 — Turma A
 
 Bibliotecas necessárias
 A implementação usa apenas biblioteca padrão do Python, sem dependências externas.
